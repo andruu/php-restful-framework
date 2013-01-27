@@ -1,0 +1,13 @@
+{
+    "name": "andrew/dfm",
+    "description": "DFMFRAMEWORK",
+    "authors": [
+        {
+            "name": "andruu",
+            "email": "andru.weir@gmail.com"
+        }
+    ],
+    "require": {
+        "rain/raintpl": "dev-master"
+    }
+}
