@@ -16,8 +16,8 @@ define('LIB_PATH', ROOT_PATH . DS . 'lib' . DS . 'Dframework');
 function __autoload ($class_name) {
   $paths = [
     'lib'         => [LIB_PATH],
-    'models'      => [APP_PATH . DS . 'models'],
-    'controllers' => [APP_PATH . DS . 'controllers'],
+    'models'      => [APP_PATH . DS . 'Models'],
+    'controllers' => [APP_PATH . DS . 'Controllers'],
   ];
   foreach ($paths as $_paths) {
     foreach ($_paths as $path) {

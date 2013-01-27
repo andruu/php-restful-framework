@@ -5,6 +5,7 @@ class Controller {
   protected $response;
   protected $params;
   protected $auto_render = true;
+  protected $layout = 'application';
 
   public function __construct ($request, $response) {
     $this->request = $request;
