@@ -25,7 +25,7 @@ class Renderer {
     if (!empty($layout)) {
       $layout = $layout . '.' . $format . '.' . self::$engine[$format];
     }
-    $renderer::render($controller, $view, $layout, $locals);
+    return $renderer::render($controller, $view, $layout, $locals);
   }
 
   public static function staticFile ($file) {

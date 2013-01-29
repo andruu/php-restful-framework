@@ -14,6 +14,6 @@ class TwigRenderer {
       $layout = null;
     }
 
-    $twig->display($view, array_merge($locals, ['layout' => $layout]));
+    return $twig->render($view, array_merge($locals, ['layout' => $layout]));
   }
 }

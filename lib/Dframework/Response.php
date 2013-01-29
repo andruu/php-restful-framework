@@ -294,13 +294,22 @@ class Response {
     }
   }
 
-  public function render ($controller, $action, $layout, $locals) {
+  public function send ($body) {
     if (is_array(self::$mime_types[$this->preferred()])) {
       $content_type = self::$mime_types[$this->preferred()][0];
     } else {
       $content_type = self::$mime_types[$this->preferred()];
     }
     header('Content-Type: ' . $content_type);
-    Renderer::render($controller, $action, $this->preferred(), $layout, $locals);
+    echo $body;
+  }
+
+  public function json ($data) {
+    $this->send(json_encode($data));
+  }
+
+  public function render ($controller, $action, $layout, $locals) {
+    $body = Renderer::render($controller, $action, $this->preferred(), $layout, $locals);
+    $this->send($body);
   }
 }

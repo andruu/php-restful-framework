@@ -19,7 +19,7 @@ class Request {
     }
     if (isset($options['route'])) {
       $this->route = $options['route'];
-      if (is_string($this->route)) {
+      if (is_string($this->route['action'])) {
         list($this->controller, $this->action) = explode('#', $this->route['action']);
       }
     }

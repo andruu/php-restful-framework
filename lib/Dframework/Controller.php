@@ -39,10 +39,53 @@ class Controller {
 
   }
 
-  public function beforeFilter () {}
-  public function afterFilter () {}
-
-  public function beforeRender () {}
-  public function afterRender () {}
+  public function __call ($name, $args) {
+    if (!in_array($name, ['beforeFilter', 'afterFilter', 'beforeRender', 'afterFilter'])) {
+      return false;
+    }
+    if (isset($args[0]) && is_callable($args[0])) {
+      if (isset($args[1])) {
+        if (isset($args[1]['only'])) {
+          if (is_array($args[1]['only'])) {
+            if (in_array($this->request->action, $args[1]['only'])) {
+              call_user_func($args[0]);
+            }
+          } else {
+            if ($this->request->action == $args[1]['only']) {
+              call_user_func($args[0]);
+            }
+          }
+        }
+        if (isset($args[1]['except'])) {
+          if (is_array($args[1]['except'])) {
+            if (!in_array($this->request->action, $args[1]['except'])) {
+              call_user_func($args[0]);
+            }
+          } else {
+            if ($this->request->action != $args[1]['except']) {
+              call_user_func($args[0]);
+            }
+          }
+        }
+      }
+    }
+  }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

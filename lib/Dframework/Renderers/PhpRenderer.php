@@ -6,6 +6,6 @@ class PhpRenderer {
     extract($locals);
     ob_start();
     include $view_path . DS . $view;
-    echo ob_get_clean();
+    return ob_get_clean();
   }
 }

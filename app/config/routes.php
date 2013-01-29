@@ -7,8 +7,8 @@ Router::resource('posts', [
   'get' => ['search/:query/:page_number']
 ]);
 
-Router::resource('user', [
-  'only' => ['add', 'create']
+Router::resource('users', [
+  'only' => ['index', 'show', 'add', 'create']
 ]);
 
 Router::get('/login', 'sessions#login');
@@ -16,8 +16,7 @@ Router::post('/login', 'sessions#login');
 Router::delete('/logout', 'sessions#logout');
 
 Router::get('/test', function ($request, $response) {
-  var_dump($request, $response);
-  echo 'test';
+  $response->json(['name' => 'andrew', 'age' => 27]);
 });
 
 Router::get('/pages/:page', 'pages#show');

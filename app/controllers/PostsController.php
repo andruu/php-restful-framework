@@ -4,6 +4,7 @@ class PostsController extends AppController {
   // Filters
   public function beforeFilter () {
     // var_dump('before');
+    parent::beforeFilter();
   }
   public function afterFilter () {
     // var_dump('after');
@@ -22,10 +23,10 @@ class PostsController extends AppController {
     ];
   }
   public function show ($id) {
-
+    echo $id;
   }
   public function add () {
-
+    echo 'add method';
   }
   public function create () {
 
