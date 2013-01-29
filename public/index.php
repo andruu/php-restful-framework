@@ -11,30 +11,37 @@ define('ROOT_PATH', dirname(dirname(__FILE__)));
 define('APP_PATH', ROOT_PATH . DS . $app_name);
 define('PUBLIC_PATH', dirname(__FILE__));
 define('LIB_PATH', ROOT_PATH . DS . 'lib' . DS . 'Dframework');
+define('VIEW_PATH', APP_PATH . DS . 'Views');
+
+// Composer autoloader
+require ROOT_PATH . DS . 'vendor' . DS . 'autoload.php';
 
 // Autoloader
-function __autoload ($class_name) {
+spl_autoload_register(function ($class_name) {
   $paths = [
-    'lib'         => [LIB_PATH],
-    'models'      => [APP_PATH . DS . 'Models'],
+    'lib' => [
+      LIB_PATH,
+      LIB_PATH . DS . 'Renderers',
+      LIB_PATH . DS . 'ViewHelpers'
+    ],
+    'models' => [APP_PATH . DS . 'Models'],
     'controllers' => [APP_PATH . DS . 'Controllers'],
   ];
   foreach ($paths as $_paths) {
     foreach ($_paths as $path) {
       $file = $path . DS . $class_name . '.php';
       if (file_exists($file)) {
-        include $file;
+        require $file;
         return;
       }
     }
   }
-}
+});
 
-// Load routes
-include APP_PATH . DS . 'config' . DS . 'routes.php';
+// Load configuration
+require APP_PATH . DS . 'config' . DS . 'application.php';
+require APP_PATH . DS . 'config' . DS . 'connections.php';
+require APP_PATH . DS . 'config' . DS . 'routes.php';
 
 // Dispatch current request
 Dispatcher::dispatch($_SERVER['REQUEST_URI']);
-
-// Composer autoloader
-include ROOT_PATH . DS . 'vendor' . DS . 'autoload.php';

@@ -13,6 +13,14 @@ class Router {
     'destroy' => ['delete', '/:resource/:id', ':resource#destroy']
   ];
 
+  public static function __callStatic ($name, $args) {
+    if (!in_array($name, self::$methods)) {
+      throw new Exception("No method '{$name}' defined.");
+    } else {
+      self::route($name, $args[0], $args[1]);
+    }
+  }
+
   public static function routes ($method = null) {
     if ($method) {
       return self::$routes[$method];
@@ -80,14 +88,6 @@ class Router {
           }
         }
       }
-    }
-  }
-
-  public static function __callStatic ($name, $args) {
-    if (!in_array($name, self::$methods)) {
-      throw new Exception("No method '{$name}' defined.");
-    } else {
-      self::route($name, $args[0], $args[1]);
     }
   }
 

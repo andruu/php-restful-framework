@@ -3,19 +3,26 @@ class PostsController extends AppController {
 
   // Filters
   public function beforeFilter () {
-    var_dump('before');
+    // var_dump('before');
   }
   public function afterFilter () {
-    var_dump('after');
+    // var_dump('after');
   }
 
   // Restful Methods
   public function index () {
-    var_dump($this->request, $this->response);
+    return [
+      'posts' => [
+        ['id' => 1, 'title' => 'Post 1'],
+        ['id' => 2, 'title' => 'Post 2'],
+        ['id' => 3, 'title' => 'Post 3'],
+        ['id' => 4, 'title' => 'Post 4'],
+        ['id' => 5, 'title' => 'Post 5'],
+      ]
+    ];
   }
   public function show ($id) {
-    var_dump($id);
-    var_dump($this->params['id']);
+
   }
   public function add () {
 
@@ -34,8 +41,6 @@ class PostsController extends AppController {
   }
   // Non-restful Methods
   public function search ($query, $page_number) {
-    var_dump($query);
-    var_dump($page_number);
-    var_dump($this->request, $this->response);
+
   }
 }

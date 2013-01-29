@@ -57,9 +57,12 @@ class Dispatcher {
     $request = new Request([
       'method' => $method,
       'route'  => $route,
-      'params' => $params
+      'params' => $params,
+      'path'   => $path
     ]);
-    $response   = new Response;
+    $response = new Response;
+    $response->format = $request->format;
+    $response->content_type = $request->content_type;
 
     // Check if closure is passed and run
     if (is_callable($route['action'])) {

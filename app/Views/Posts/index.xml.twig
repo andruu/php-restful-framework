@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<posts>
+  {% for post in posts %}
+  <post id="{{ post.id }}">
+    {{ post.title }}
+  </post>
+  {% endfor %}
+</posts>

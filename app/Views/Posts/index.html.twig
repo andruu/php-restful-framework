@@ -1,0 +1,9 @@
+{% extends layout %}
+{% block content %}
+  Blog Posts
+  {% for post in posts %}
+  <div id="{{ post.id }}">
+    {{ post.title }}
+  </div>
+  {% endfor %}
+{% endblock %}
