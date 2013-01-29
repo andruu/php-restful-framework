@@ -3,7 +3,7 @@
   Blog Posts
   {% for post in posts %}
   <div id="{{ post.id }}">
-    {{ post.title }}
+    <a href="/blog/{{ post.id }}">{{ post.title }}</a>
   </div>
   {% endfor %}
 {% endblock %}

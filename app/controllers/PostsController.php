@@ -1,32 +1,37 @@
 <?php
 class PostsController extends AppController {
 
+  // Dummy data
+  private $posts = [
+    ['id' => 1, 'title' => 'Something crazy just happened'],
+    ['id' => 2, 'title' => 'Isreal loves Palestine'],
+    ['id' => 3, 'title' => 'Toronto Raptors win the NBA Championship'],
+    ['id' => 4, 'title' => 'I did it! I\'m the best mang!'],
+    ['id' => 5, 'title' => 'Can\'t think of any clever titles'],
+  ];
+
   // Filters
   public function beforeFilter () {
-    // var_dump('before');
     parent::beforeFilter();
   }
   public function afterFilter () {
-    // var_dump('after');
   }
 
   // Restful Methods
   public function index () {
     return [
-      'posts' => [
-        ['id' => 1, 'title' => 'Post 1'],
-        ['id' => 2, 'title' => 'Post 2'],
-        ['id' => 3, 'title' => 'Post 3'],
-        ['id' => 4, 'title' => 'Post 4'],
-        ['id' => 5, 'title' => 'Post 5'],
-      ]
+      'posts' => $this->posts
     ];
   }
+
   public function show ($id) {
-    echo $id;
+    return [
+      'post' => $this->posts[($id - 1)]
+    ];
   }
+
   public function add () {
-    echo 'add method';
+
   }
   public function create () {
 
