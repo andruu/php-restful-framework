@@ -40,7 +40,7 @@ class Router {
     }
     unset(self::$routes[$method]['/']);
     foreach (self::routes($method) as $key => $_route) {
-      if (preg_match('|' . $key . '|', $path)) {
+      if (preg_match('|^' . $key . '/?$|', $path)) {
         $route = $_route;
       }
     }
@@ -95,7 +95,7 @@ class Router {
     }
     // Nested resources
     if (!empty($options) && isset($options['resource'])) {
-      if (!is_array($options['resource'][1])) {
+      if (isset($options['resource'][1]) && !is_array($options['resource'][1])) {
         $options['resource'][1] = [];
       }
       $options['resource'][1]['controller'] = $options['resource'][0];
@@ -114,7 +114,7 @@ class Router {
       $params[] = $matches[1][0];
     }
     if (!empty($params)) {
-      $path = preg_replace("/:[a-zA-Z0-9_]+/", "(\\S+)", $path);
+      $path = preg_replace("/:[a-zA-Z0-9_]+/", "([a-zA-Z0-9_-]+)", $path);
     }
     self::$routes[$method][$path] = ['path' => $path, 'action' => $action, 'params' => $params];
   }

@@ -1,6 +1,8 @@
 <?php
 class UsersController extends AppController {
 
+  public $auto_render = false;
+
   public function beforeFilter () {
     parent::beforeFilter(function () {
       echo 'only';

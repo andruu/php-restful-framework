@@ -7,6 +7,7 @@ Router::resource('posts', [
   'except' => ['destroy'],
   'get' => ['search/:query/:page_number'],
   'resource' => ['comments', [
+    'resource' => ['users'],
     'except' => ['index', 'show']
   ]]
 ]);
