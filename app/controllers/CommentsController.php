@@ -11,6 +11,7 @@ class CommentsController extends AppController {
   public function add () {
     echo 'adding comment';
   }
+
   public function create () {
 
   }

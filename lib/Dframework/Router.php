@@ -107,7 +107,7 @@ class Router {
   public static function route ($method, $path, $action) {
     $params = [];
     $offset = 0;
-    while (preg_match("/\/:([a-zA-Z0-9_]+)/", substr($path, $offset), $matches, PREG_OFFSET_CAPTURE)) {
+    while (preg_match("/:([a-zA-Z0-9_]+)/", substr($path, $offset), $matches, PREG_OFFSET_CAPTURE)) {
       $offset = $offset + $matches[0][1];
       $length = strlen($matches[0][0]);
       $offset = $offset + $length;

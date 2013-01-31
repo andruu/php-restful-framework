@@ -24,5 +24,13 @@ Router::get('/test', function ($request, $response) {
   $response->json(['name' => 'andrew', 'age' => 27]);
 });
 
+Router::get('/test/:id-:slug', function ($request, $response) {
+  var_dump($request);
+  $response->json([
+    'id' => $request->params['id'],
+    'slug' => $request->params['slug'],
+  ]);
+});
+
 Router::get('/pages/:page', 'pages#show');
 Router::get('/pages/test', 'pages#test');
