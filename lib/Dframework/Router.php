@@ -59,6 +59,10 @@ class Router {
         $_resource = $resource;
       }
 
+      if (isset($options['controller'])) {
+        $resource = $options['controller'];
+      }
+
       // Set all methods except these
       if (isset($options['except'])) {
         foreach ($options['except'] as $action) {
@@ -88,6 +92,15 @@ class Router {
           }
         }
       }
+    }
+    // Nested resources
+    if (!empty($options) && isset($options['resource'])) {
+      if (!is_array($options['resource'][1])) {
+        $options['resource'][1] = [];
+      }
+      $options['resource'][1]['controller'] = $options['resource'][0];
+      $path = $options['resource'][1]['path'] = $_resource . '/' . $options['resource'][0];
+      self::resource($path, $options['resource'][1]);
     }
   }
 

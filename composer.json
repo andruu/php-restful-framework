@@ -8,7 +8,6 @@
         }
     ],
     "require": {
-        "rain/raintpl": "dev-master",
         "twig/twig": "1.*"
     }
 }

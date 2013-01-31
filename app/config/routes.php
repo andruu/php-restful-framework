@@ -1,10 +1,14 @@
 <?php
+// Order is important!
 Router::root('posts#index');
 
 Router::resource('posts', [
   'as' => 'blog',
   'except' => ['destroy'],
-  'get' => ['search/:query/:page_number']
+  'get' => ['search/:query/:page_number'],
+  'resource' => ['comments', [
+    'except' => ['index', 'show']
+  ]]
 ]);
 
 Router::resource('users', [
@@ -20,4 +24,4 @@ Router::get('/test', function ($request, $response) {
 });
 
 Router::get('/pages/:page', 'pages#show');
-Router::put('/pages/test', 'pages#test');
+Router::get('/pages/test', 'pages#test');

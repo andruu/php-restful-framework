@@ -12,6 +12,7 @@ define('APP_PATH', ROOT_PATH . DS . $app_name);
 define('PUBLIC_PATH', dirname(__FILE__));
 define('LIB_PATH', ROOT_PATH . DS . 'lib' . DS . 'Dframework');
 define('VIEW_PATH', APP_PATH . DS . 'Views');
+define('CONFIG_PATH', APP_PATH . DS . 'Config');
 
 // Composer autoloader
 require ROOT_PATH . DS . 'vendor' . DS . 'autoload.php';
@@ -40,8 +41,14 @@ spl_autoload_register(function ($class_name) {
 
 // Load configuration
 require APP_PATH . DS . 'config' . DS . 'application.php';
-require APP_PATH . DS . 'config' . DS . 'connections.php';
+// require APP_PATH . DS . 'config' . DS . 'connections.php';
 require APP_PATH . DS . 'config' . DS . 'routes.php';
 
 // Dispatch current request
 Dispatcher::dispatch($_SERVER['REQUEST_URI']);
+
+
+
+
+
+

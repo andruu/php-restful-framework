@@ -6,7 +6,7 @@ class PostsController extends AppController {
     ['id' => 1, 'title' => 'Something crazy just happened'],
     ['id' => 2, 'title' => 'Isreal loves Palestine'],
     ['id' => 3, 'title' => 'Toronto Raptors win the NBA Championship'],
-    ['id' => 4, 'title' => 'I did it! I\'m the best mang!'],
+    ['id' => 4, 'title' => 'I did it! I\'m the best man!'],
     ['id' => 5, 'title' => 'Can\'t think of any clever titles'],
   ];
 
@@ -19,6 +19,7 @@ class PostsController extends AppController {
 
   // Restful Methods
   public function index () {
+    // Post::all();
     return [
       'posts' => $this->posts
     ];

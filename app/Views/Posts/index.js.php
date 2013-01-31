@@ -1,0 +1,1 @@
+console.log(<?=json_encode($posts)?>)
