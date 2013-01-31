@@ -95,11 +95,19 @@ class Router {
     }
     // Nested resources
     if (!empty($options) && isset($options['resource'])) {
-      if (isset($options['resource'][1]) && !is_array($options['resource'][1])) {
+      if (!isset($options['resource'][1])) {
         $options['resource'][1] = [];
       }
+      if (isset($options['resource'][1]['parent_path'])) {
+        $path = "{$options['resource'][1]['parent_path']}/:" . Inflector::singularize($options['resource'][1]['parent']) . "_id/{$options['resource'][0]}";
+      } else {
+        $path = "{$_resource}/:{$_resource}_id/{$options['resource'][0]}";
+      }
+      if (isset($options['resource'][1]['resource'])) {
+        $options['resource'][1]['resource'][1]['parent'] = $options['resource'][0];
+        $options['resource'][1]['resource'][1]['parent_path'] = "{$_resource}/:" . Inflector::singularize($resource) . "_id/{$options['resource'][0]}";
+      }
       $options['resource'][1]['controller'] = $options['resource'][0];
-      $path = $options['resource'][1]['path'] = $_resource . '/' . $options['resource'][0];
       self::resource($path, $options['resource'][1]);
     }
   }

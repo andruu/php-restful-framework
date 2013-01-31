@@ -9,20 +9,22 @@ class CommentsController extends AppController {
   }
 
   public function add () {
+    var_dump(Router::routes());
     echo 'adding comment';
   }
 
   public function create () {
 
   }
-  public function edit () {
-
+  public function edit ($blog_id, $id) {
+    var_dump($this->params);
+    var_dump($blog_id, $id);
   }
-  public function update () {
-
+  public function update ($id) {
+    echo $id;
   }
-  public function destroy () {
-
+  public function destroy ($id) {
+    echo $id;
   }
 
 }

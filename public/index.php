@@ -22,6 +22,7 @@ spl_autoload_register(function ($class_name) {
   $paths = [
     'lib' => [
       LIB_PATH,
+      LIB_PATH . DS . 'Utility',
       LIB_PATH . DS . 'Renderers',
       LIB_PATH . DS . 'ViewHelpers'
     ],
@@ -46,9 +47,4 @@ require APP_PATH . DS . 'config' . DS . 'routes.php';
 
 // Dispatch current request
 Dispatcher::dispatch($_SERVER['REQUEST_URI']);
-
-
-
-
-
 
