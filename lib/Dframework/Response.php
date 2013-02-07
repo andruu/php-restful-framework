@@ -50,6 +50,7 @@ class Response {
   protected static $mime_types = [
     'html' => array('text/html', '*/*'),
     'json' => 'application/json',
+    'yml' => ['text/plain', 'application/x-yaml', 'text/yaml'],
     'xml' => array('application/xml', 'text/xml'),
     'rss' => 'application/rss+xml',
     'ai' => 'application/postscript',
@@ -300,6 +301,7 @@ class Response {
     } else {
       $content_type = self::$mime_types[$this->preferred()];
     }
+    http_response_code(200);
     header('Content-Type: ' . $content_type);
     echo $body;
   }

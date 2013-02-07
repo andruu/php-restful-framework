@@ -1,1 +1,1 @@
-console.log(<?=json_encode($posts)?>)
+console.log(<?=$posts->to_json()?>)

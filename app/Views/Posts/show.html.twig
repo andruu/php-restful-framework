@@ -2,5 +2,23 @@
 {% block content %}
   <h2>{{ post.title }}</h2>
   Showing {{ params.id }}
+  <p>{{ post.body }}</p>
+  <ul>
+    {% if previous %}
+    <li><a href="/blog/{{ previous.slug }}">&laquo; {{ previous.title }}</a></li>
+    {% endif %}
+    {% if next %}
+    <li><a href="/blog/{{ next.slug }}">{{ next.title }} &raquo;</a></li>
+    {% endif %}
+  </ul>
+  <h4>{{ post.comments.count }} Comments</h4>
+  {% for comment in post.comments %}
+  <div class="comment">
+    <a href="{{ comment.website }}">{{ comment.name }}</a>
+    <br>
+    {{ comment.body }}
+    <hr>
+  </div>
+  {% endfor %}
   <a href="/blog">Back</a>
 {% endblock %}

@@ -1,12 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
+  <link href="/assets/bootstrap.min.css" rel="stylesheet">
   <meta charset="UTF-8">
   <title>Application Layout</title>
 </head>
 <body>
-  <h3>Application Layout</h3>
-  {% block content %}
-  {% endblock %}
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h3>
+          <a href="/">Application Layout</a>
+        </h3>
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+  <script src="/assets/jquery.min.js"></script>
+  <script src="/assets/bootstrap.min.js"></script>
 </body>
 </html>

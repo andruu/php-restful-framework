@@ -3,6 +3,7 @@ class Dispatcher {
 
   private static $controller;
   private static $action;
+  private static $preferred;
 
   public static function parseParams ($method, $route, $path) {
     $params = [];
@@ -43,12 +44,47 @@ class Dispatcher {
     }
   }
 
+  public static function preferred () {
+    return self::$preferred;
+  }
+
+  public static function renderAsset ($file) {
+    $asset_paths = [
+      ASSETS_PATH . DS . 'Javascript',
+      ASSETS_PATH . DS . 'Stylesheets',
+      ASSETS_PATH . DS . 'Images',
+    ];
+    foreach ($asset_paths as $path) {
+      if ($_file = Renderer::staticFile($path . DS . $file)) {
+        return [$file, $_file];
+      }
+    }
+  }
+
   public static function dispatch ($path) {
     $path   = explode('?', $path)[0];
     $method = strtolower($_SERVER['REQUEST_METHOD']);
-    $route  = Router::find($method, $path);
+
+    // Check if asset
+    // @TODO: Refactor into asset manager with middleware
+    if (preg_match('/\/assets\/[a-zA-z0-9-_\.]+/', $path)) {
+      $_file = explode('/assets/', $path)[1];
+      list($filename, $file) = self::renderAsset($_file);
+      if (!$file) {
+        http_response_code(404);
+        throw new Exception("No route '{$path}' defined.");
+      }
+      $ext = pathinfo($filename, PATHINFO_EXTENSION);
+      $response = new Response;
+      $response->preferred($ext);
+      $response->send($file);
+      exit();
+    }
+
+    $route = Router::find($method, $path);
 
     if (!$route) {
+      http_response_code(404);
       throw new Exception("No route '{$path}' defined.");
     }
 
@@ -75,6 +111,7 @@ class Dispatcher {
       call_user_func([$controller, 'invoke'], self::$action, $named_params);
     }
 
+    self::$preferred = $response->preferred();
   }
 
 }

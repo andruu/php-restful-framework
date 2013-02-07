@@ -11,8 +11,6 @@ class Controller {
     $this->request = $request;
     $this->response = $response;
     $this->params = $request->params;
-
-    var_dump($this);
   }
 
   public function invoke ($action, $named_params = []) {

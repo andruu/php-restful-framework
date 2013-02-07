@@ -1,15 +1,6 @@
 <?php
 class PostsController extends AppController {
 
-  // Dummy data
-  private $posts = [
-    ['id' => 1, 'title' => 'Something crazy just happened'],
-    ['id' => 2, 'title' => 'Isreal loves Palestine'],
-    ['id' => 3, 'title' => 'Toronto Raptors win the NBA Championship'],
-    ['id' => 4, 'title' => 'I did it! I\'m the best man!'],
-    ['id' => 5, 'title' => 'Can\'t think of any clever titles'],
-  ];
-
   // Filters
   public function beforeFilter () {
     parent::beforeFilter();
@@ -19,15 +10,18 @@ class PostsController extends AppController {
 
   // Restful Methods
   public function index () {
-    // Post::all();
+    $posts = Post::find('all');
     return [
-      'posts' => $this->posts
+      'posts' => $posts
     ];
   }
 
   public function show ($id) {
+    $post = Post::find_by_slug($id);
     return [
-      'post' => $this->posts[($id - 1)]
+      'post' => $post,
+      'previous' => $post->previous(),
+      'next' => $post->next(),
     ];
   }
 

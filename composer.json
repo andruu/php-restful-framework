@@ -8,6 +8,10 @@
         }
     ],
     "require": {
-        "twig/twig": "1.*"
+        "twig/twig": "1.*",
+        "symfony/yaml": "2.2.*@dev",
+        "monolog/monolog": "1.4.*@dev",
+        "mjohnson/type-converter": "2.0.0",
+        "ccampbell/chromephp": "dev-master"
     }
 }

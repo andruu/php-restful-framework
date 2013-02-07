@@ -1,1 +1,1 @@
-<?php echo json_encode($posts) ?>
+<?=$posts->to_json()?>

@@ -1,0 +1,1 @@
+<?=$posts->to_yaml()?>

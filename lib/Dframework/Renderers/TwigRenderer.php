@@ -6,7 +6,8 @@ class TwigRenderer {
     $layout_path = VIEW_PATH . DS . 'Layouts';
 
     $loader = new Twig_Loader_Filesystem([$view_path, $layout_path]);
-    $twig = new Twig_Environment($loader);
+    $twig = new Twig_Environment($loader, ['debug' => true]);
+    $twig->addExtension(new Twig_Extension_Debug());
 
     if (!empty($layout)) {
       $layout = $twig->loadTemplate($layout);

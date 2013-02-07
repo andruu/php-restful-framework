@@ -1,4 +1,4 @@
 <?php
-class Post {
-
+class Post extends Model {
+  static $has_many = [['comments']];
 }

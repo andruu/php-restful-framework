@@ -40,7 +40,7 @@ class Router {
     }
     unset(self::$routes[$method]['/']);
     foreach (self::routes($method) as $key => $_route) {
-      if (preg_match('|^' . $key . '/?$|', $path)) {
+      if (preg_match('|^' . $key . '(\.[a-z0-9]+)?/?$|', $path)) {
         $route = $_route;
       }
     }
